@@ -4,5 +4,5 @@
         android:icon="@drawable/chat_icon"/>
     <item android:title="Profile"
         android:id="@+id/menu_profile"
-        android:icon="@drawable/profile_icon"/>
+        android:icon="@drawable/person_icon"/>
 </menu>
