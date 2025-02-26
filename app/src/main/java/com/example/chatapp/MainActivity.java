@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         searchButton.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, SearchActivity.class));
+            startActivity(new Intent(MainActivity.this, SearchUserActivity.class));
         });
 
         bottomNavigationView.setSelectedItemId(R.id.menu_chat);
