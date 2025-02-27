@@ -1,15 +1,10 @@
 package com.example.chatapp;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -31,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         searchButton = findViewById(R.id.main_search_btn);
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            if(item.getItemId() == R.id.menu_chat) {
+            if (item.getItemId() == R.id.menu_chat) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, chatFragment).commit();
             }
             if (item.getItemId() == R.id.menu_profile) {

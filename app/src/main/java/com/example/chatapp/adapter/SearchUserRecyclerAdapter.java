@@ -1,5 +1,6 @@
 package com.example.chatapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chatapp.R;
 import com.example.chatapp.model.UserModel;
+import com.example.chatapp.utils.FirebaseUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
@@ -24,10 +26,18 @@ public class SearchUserRecyclerAdapter extends FirestoreRecyclerAdapter<UserMode
         this.context = context;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onBindViewHolder(@NonNull UserModelViewHolder holder, int position, @NonNull UserModel model) {
         holder.usernameText.setText(model.getUsername());
         holder.phoneText.setText(model.getPhone());
+        if (model.getUserId() != null && model.getUserId().equals(FirebaseUtil.currentUserId())) {
+            holder.usernameText.setText(model.getUsername() + " (Me)");
+        }
+
+        holder.itemView.setOnClickListener(v -> {
+
+        });
     }
 
     @NonNull
