@@ -2,6 +2,7 @@ package com.example.chatapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.chatapp.ChatActivity;
 import com.example.chatapp.R;
 import com.example.chatapp.model.UserModel;
+import com.example.chatapp.utils.AndroidUtil;
 import com.example.chatapp.utils.FirebaseUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -36,8 +39,17 @@ public class SearchUserRecyclerAdapter extends FirestoreRecyclerAdapter<UserMode
         }
 
         holder.itemView.setOnClickListener(v -> {
-
+            Intent intent = new Intent(context, ChatActivity.class);
+            AndroidUtil.passUserModelAsIntent(intent, model);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         });
+    }
+
+    @Override
+    public void onDataChanged() {
+        super.onDataChanged();
+        notifyDataSetChanged();
     }
 
     @NonNull
