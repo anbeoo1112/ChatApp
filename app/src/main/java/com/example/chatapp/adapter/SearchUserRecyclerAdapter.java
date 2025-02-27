@@ -1,6 +1,7 @@
 package com.example.chatapp.adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,34 +17,35 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 public class SearchUserRecyclerAdapter extends FirestoreRecyclerAdapter<UserModel, SearchUserRecyclerAdapter.UserModelViewHolder> {
 
-    public SearchUserRecyclerAdapter(@NonNull FirestoreRecyclerOptions<UserModel> options, Context applicationContext) {
+    private final Context context;
+
+    public SearchUserRecyclerAdapter(@NonNull FirestoreRecyclerOptions<UserModel> options, Context context) {
         super(options);
+        this.context = context;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull SearchUserRecyclerAdapter.UserModelViewHolder holder, int position, @NonNull UserModel model) {
+    protected void onBindViewHolder(@NonNull UserModelViewHolder holder, int position, @NonNull UserModel model) {
         holder.usernameText.setText(model.getUsername());
         holder.phoneText.setText(model.getPhone());
-
     }
 
     @NonNull
     @Override
-    public SearchUserRecyclerAdapter.UserModelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public UserModelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.search_user_recycler_row, parent, false);
+        return new UserModelViewHolder(view);
     }
 
     class UserModelViewHolder extends RecyclerView.ViewHolder {
         TextView usernameText, phoneText;
-        ImageView profileImage;
+        ImageView profilePic;
 
         public UserModelViewHolder(@NonNull View itemView) {
             super(itemView);
-            usernameText = itemView.findViewById(R.id.search_user_input);
+            usernameText = itemView.findViewById(R.id.user_name_text);
             phoneText = itemView.findViewById(R.id.phone_text);
-            profileImage = itemView.findViewById(R.id.profile_pic);
+            profilePic = itemView.findViewById(R.id.profile_pic_image_view);
         }
     }
 }
-
-
