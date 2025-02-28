@@ -34,7 +34,7 @@ public class SearchUserRecyclerAdapter extends FirestoreRecyclerAdapter<UserMode
     protected void onBindViewHolder(@NonNull UserModelViewHolder holder, int position, @NonNull UserModel model) {
         holder.usernameText.setText(model.getUsername());
         holder.phoneText.setText(model.getPhone());
-        if (model.getUserId() != null && model.getUserId().equals(FirebaseUtil.currentUserId())) {
+        if (model.getUserId().equals(FirebaseUtil.currentUserId())) {
             holder.usernameText.setText(model.getUsername() + " (Me)");
         }
 
