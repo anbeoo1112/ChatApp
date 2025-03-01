@@ -60,4 +60,8 @@ public class FirebaseUtil {
     public static String timestampToString(Timestamp timestamp){
         return new java.text.SimpleDateFormat("HH:MM").format(timestamp.toDate());
     }
+
+    public static void logOut() {
+        FirebaseAuth.getInstance().signOut();
+    }
 }
